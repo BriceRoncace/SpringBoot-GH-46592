@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>4.0.2</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>app.demo</groupId>
+  <artifactId>gh-46592</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <java.version>25</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webmvc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>gh-46592</finalName>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <activatedProperties>dev</activatedProperties>
+        <profile.packaging>jar</profile.packaging>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+          <optional>true</optional>
+        </dependency>
+        <!--  Allows JSP views to be used in embedded tomcat -->
+        <dependency>
+          <groupId>org.apache.tomcat.embed</groupId>
+          <artifactId>tomcat-embed-jasper</artifactId>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <activatedProperties>prod</activatedProperties>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>
